@@ -7,9 +7,14 @@ import Link from 'next/link';
 interface QuickInventoryProps {
   isOpen: boolean;
   onClose: () => void;
+  onSelectCar: (car: Car) => void;  // ✅ تم الإضافة
 }
 
-export default function QuickInventory({ isOpen, onClose }: QuickInventoryProps) {
+export default function QuickInventory({ 
+  isOpen, 
+  onClose, 
+  onSelectCar  // ✅ تم الإضافة
+}: QuickInventoryProps) {
   const availableCars: Car[] = cars.filter((car: Car) => 
     car.status === 'available' || 
     car.status === 'جديدة' || 
@@ -43,7 +48,7 @@ export default function QuickInventory({ isOpen, onClose }: QuickInventoryProps)
             aria-label="إغلاق القائمة"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -54,7 +59,10 @@ export default function QuickInventory({ isOpen, onClose }: QuickInventoryProps)
               <Link
                 key={car.id}
                 href={`/cars/${car.id}`}
-                onClick={onClose}
+                onClick={() => {
+                  onSelectCar(car);  // ✅ تم التعديل: استدعاء onSelectCar
+                  onClose();
+                }}
                 className="w-full flex items-center gap-4 p-3 bg-[#1B1E20] border border-[#3A3E40]/60 rounded-xl hover:border-[#C8CDD0] transition-all text-right group"
               >
                 <div className="w-24 h-24 bg-[#111315] rounded-lg overflow-hidden flex-shrink-0 border border-[#3A3E40]/30">
@@ -81,7 +89,7 @@ export default function QuickInventory({ isOpen, onClose }: QuickInventoryProps)
 
                 <div className="text-[#B8B0A6] group-hover:text-[#F3F0EA] group-hover:translate-x-[-4px] transition-all">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path d="M15 19l-7-7 7 7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </div>
               </Link>
