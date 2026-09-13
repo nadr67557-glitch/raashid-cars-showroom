@@ -162,27 +162,25 @@ export default function CarDetailView({ car, onBack }: CarDetailViewProps) {
 
   // استخراج المواصفات الكاملة من البيانات
   const buildFullSpecs = () => {
-    const specsList: { label: string; value: string; icon?: string }[] = [];
+    const specsList: { label: string; value: string }[] = [];
 
-    // الحقول الأساسية من Car type
-    if (car.engine) specsList.push({ label: 'المحرك', value: car.engine, icon: 'engine' });
-    if (car.engineType) specsList.push({ label: 'نوع المحرك', value: car.engineType, icon: 'engine' });
-    if (car.cylinders) specsList.push({ label: 'عدد السلندرات', value: car.cylinders, icon: 'engine' });
-    if (car.horsepower) specsList.push({ label: 'القوة', value: car.horsepower, icon: 'engine' });
-    if (car.torque) specsList.push({ label: 'العزم', value: car.torque, icon: 'engine' });
-    if (car.transmission) specsList.push({ label: 'ناقل الحركة', value: car.transmission, icon: 'gear' });
-    if (car.drivetrain) specsList.push({ label: 'نظام الدفع', value: car.drivetrain, icon: 'drive' });
-    if (car.fuelType) specsList.push({ label: 'الوقود', value: car.fuelType, icon: 'fuel' });
-    if (car.fuelTankCapacity) specsList.push({ label: 'سعة خزان الوقود', value: car.fuelTankCapacity, icon: 'fuel' });
-    if (car.fuelEfficiency) specsList.push({ label: 'كفاءة الاستهلاك', value: car.fuelEfficiency, icon: 'fuel' });
-    if (car.mileage !== undefined) specsList.push({ label: 'عداد الكيلومترات', value: `${car.mileage} كم`, icon: 'speed' });
-    if (car.color) specsList.push({ label: 'اللون الخارجي', value: car.color, icon: 'color' });
-    if (car.interiorColor) specsList.push({ label: 'اللون الداخلي', value: car.interiorColor, icon: 'color' });
-    if (car.agent) specsList.push({ label: 'الوكيل', value: car.agent, icon: 'agent' });
-    if (car.warranty) specsList.push({ label: 'الضمان', value: car.warranty, icon: 'shield' });
-    if (car.description) specsList.push({ label: 'ملاحظات', value: car.description, icon: 'note' });
+    if (car.engine) specsList.push({ label: 'المحرك', value: car.engine });
+    if (car.engineType) specsList.push({ label: 'نوع المحرك', value: car.engineType });
+    if (car.cylinders) specsList.push({ label: 'عدد السلندرات', value: car.cylinders });
+    if (car.horsepower) specsList.push({ label: 'القوة', value: car.horsepower });
+    if (car.torque) specsList.push({ label: 'العزم', value: car.torque });
+    if (car.transmission) specsList.push({ label: 'ناقل الحركة', value: car.transmission });
+    if (car.drivetrain) specsList.push({ label: 'نظام الدفع', value: car.drivetrain });
+    if (car.fuelType) specsList.push({ label: 'الوقود', value: car.fuelType });
+    if (car.fuelTankCapacity) specsList.push({ label: 'سعة خزان الوقود', value: car.fuelTankCapacity });
+    if (car.fuelEfficiency) specsList.push({ label: 'كفاءة الاستهلاك', value: car.fuelEfficiency });
+    if (car.mileage !== undefined) specsList.push({ label: 'عداد الكيلومترات', value: `${car.mileage} كم` });
+    if (car.color) specsList.push({ label: 'اللون الخارجي', value: car.color });
+    if (car.interiorColor) specsList.push({ label: 'اللون الداخلي', value: car.interiorColor });
+    if (car.agent) specsList.push({ label: 'الوكيل', value: car.agent });
+    if (car.warranty) specsList.push({ label: 'الضمان', value: car.warranty });
+    if (car.description) specsList.push({ label: 'ملاحظات', value: car.description });
 
-    // specs المخصصة
     if (car.specs && car.specs.length > 0) {
       car.specs.forEach(spec => {
         if (!specsList.some(s => s.label === spec.label)) {
@@ -191,7 +189,6 @@ export default function CarDetailView({ car, onBack }: CarDetailViewProps) {
       });
     }
 
-    // features
     if (car.features && typeof car.features === 'object') {
       const labelMap: Record<string, string> = {
         engineSize: 'سعة المحرك', turbo: 'نوع الشحن', transmissionSpeeds: 'ناقل الحركة',
@@ -363,8 +360,8 @@ export default function CarDetailView({ car, onBack }: CarDetailViewProps) {
           </div>
         )}
 
-        {/* معرض الصور بالتبويبات */}
-        {(car.gallery.exterior?.length || car.gallery.interior?.length || car.gallery.details?.length) > 0 && (
+        {/* معرض الصور بالتبويبات — الشرط المصحح */}
+        {allImages.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-[#F3F0EA] mb-6 flex items-center gap-3">
               <div className="w-1 h-6 bg-[#8B5CF6] rounded-full"></div>
@@ -466,20 +463,20 @@ export default function CarDetailView({ car, onBack }: CarDetailViewProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className="text-sm text-[#B8B0A6]">الرياض، طريق خريص، المملكة العربية السعودية</span>
+              <span className="h-9 flex items-center text-sm text-[#B8B0A6]">الرياض، طريق خريص، المملكة العربية السعودية</span>
             </div>
             <div className="flex items-center gap-3 flex-wrap">
               <svg className="w-4 h-4 text-[#8B5CF6] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
               </svg>
-              <a href="tel:+966580537317" dir="ltr" className="text-sm text-[#F3F0EA] hover:text-[#8B5CF6] transition-colors">+966 58 053 7317</a>
-              <a href="https://wa.me/966580537317" target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 rounded-full text-xs text-[#F3F0EA] hover:bg-[#8B5CF6]/25 transition-all">واتساب</a>
+              <a href="tel:+966580537317" dir="ltr" className="h-9 flex items-center text-sm font-medium text-[#F3F0EA] hover:text-[#8B5CF6] transition-colors">+966 58 053 7317</a>
+              <a href="https://wa.me/966580537317" target="_blank" rel="noopener noreferrer" className="h-9 flex items-center gap-1.5 px-4 bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 rounded-full text-xs text-[#F3F0EA] hover:bg-[#8B5CF6]/25 transition-all">واتساب</a>
             </div>
             <div className="flex items-center gap-3">
               <svg className="w-4 h-4 text-[#8B5CF6] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm text-[#B8B0A6]">السبت - الخميس: 9:00 صباحاً – 10:00 مساءً</span>
+              <span className="h-9 flex items-center text-sm text-[#B8B0A6]">السبت - الخميس: 9:00 صباحاً – 10:00 مساءً</span>
             </div>
           </div>
         </div>
@@ -491,15 +488,19 @@ export default function CarDetailView({ car, onBack }: CarDetailViewProps) {
           <p className="text-xs text-[#B8B0A6]">
             جميع الحقوق محفوظة © 2026 معرض راشد للسيارات — RAASHID CARS
           </p>
-          <div className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full border border-[#8B5CF6]/25 bg-[#1B1E20]/60">
-            <span className="w-8 h-8 bg-[#8B5CF6]/15 border border-[#8B5CF6]/40 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-[#8B5CF6]/25 bg-[#1B1E20]/60">
+            <span className="w-8 h-8 self-center bg-[#8B5CF6]/15 border border-[#8B5CF6]/40 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[10px] font-bold text-[#8B5CF6]">KJ</span>
             </span>
-            <span className="flex flex-col items-center leading-tight text-center">
+            <span className="self-center flex flex-col items-center leading-tight text-center">
               <span className="text-sm font-semibold text-[#F3F0EA]">خالد الجراش</span>
               <span className="text-[10px] text-[#B8B0A6]">تصميم وتنفيذ الحلول الرقمية</span>
             </span>
-            <a href="tel:779184839" dir="ltr" className="text-xs font-medium text-[#8B5CF6] hover:text-[#A78BFA] transition-colors flex-shrink-0">
+            <a
+              href="tel:779184839"
+              dir="ltr"
+              className="h-9 self-center flex items-center text-xs font-medium text-[#8B5CF6] hover:text-[#A78BFA] transition-colors flex-shrink-0"
+            >
               779184839
             </a>
           </div>
