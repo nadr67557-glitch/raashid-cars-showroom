@@ -140,16 +140,17 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         />
       </div>
 
-      <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
+      {/* ✅ تعديل 1: الصورة أعلى وبارتفاع مناسب للجوال حتى لا تغطيها النصوص */}
+      <div className="absolute inset-x-0 top-20 md:inset-0 md:top-0 flex items-start md:items-center justify-center z-10 px-4">
         <div 
-          className={`relative transition-all duration-300 ease-out ${
+          className={`relative h-[38vh] md:h-[70vh] transition-all duration-300 ease-out ${
             isTransitioning 
               ? direction === 'next' 
                 ? 'opacity-0 translate-x-8' 
                 : 'opacity-0 -translate-x-8'
               : 'opacity-100 translate-x-0'
           }`}
-          style={{ width: '100%', maxWidth: '1400px', height: '70vh' }}
+          style={{ width: '100%', maxWidth: '1400px' }}
         >
           <img
             src={currentCar.heroImage}
@@ -257,6 +258,7 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         </span>
       </div>
 
+      {/* ✅ تعديل 2: أحجام النقاط بـ inline style حتى لا تتغلب عليها أي CSS عامة */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
         {heroCars.map((_, index) => (
           <button
@@ -264,17 +266,23 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
             onClick={() => navigateToCar(index)}
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
-                ? 'w-8 h-2 bg-[#F3F0EA]'
-                : 'w-2 h-2 bg-[#B8B0A6]/40 hover:bg-[#B8B0A6]/60'
+                ? 'bg-[#F3F0EA]'
+                : 'bg-[#B8B0A6]/40 hover:bg-[#B8B0A6]/60'
             }`}
+            style={
+              index === currentIndex
+                ? { width: '32px', height: '8px' }
+                : { width: '8px', height: '8px' }
+            }
             aria-label={`الانتقال إلى السيارة ${index + 1}`}
           />
         ))}
       </div>
 
+      {/* ✅ تعديل 3: زر المخزون السريع ينزل أسفل الهيدر على الجوال حتى لا يتداخل مع الماركات */}
       <button
         onClick={onInventoryOpen}
-        className="absolute top-6 left-6 md:top-8 md:left-12 z-30 flex items-center gap-2 px-4 py-2 bg-[#1B1E20]/80 backdrop-blur-md border border-[#3A3E40]/60 rounded-full text-sm font-medium text-[#F3F0EA] hover:bg-[#1B1E20] transition-all duration-200"
+        className="absolute top-20 left-6 md:top-8 md:left-12 z-30 flex items-center gap-2 px-4 py-2 bg-[#1B1E20]/80 backdrop-blur-md border border-[#3A3E40]/60 rounded-full text-sm font-medium text-[#F3F0EA] hover:bg-[#1B1E20] transition-all duration-200"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
