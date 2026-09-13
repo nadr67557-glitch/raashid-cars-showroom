@@ -15,7 +15,7 @@ export const cars: Car[] = [
     transmission: '9-speed automatic',
     drivetrain: 'permanent 4WD',
     harajUrl: 'https://haraj.com.sa/11186481270?src=android',
-    heroImage: '/images/cars/nissan-patrol-1-ext-1.jpg',
+    heroImage: '/car.jpg',
     gallery: {
       exterior: [
         '/images/cars/nissan-patrol-1-ext-1.jpg',
@@ -293,7 +293,7 @@ export const cars: Car[] = [
     transmission: '10-speed automatic',
     drivetrain: '4WD',
     harajUrl: 'https://haraj.com.sa/11187393108?src=android',
-    heroImage: '/images/cars/toyota-lc-3-hero.jpg',
+    heroImage: '/toyota.jpg',
     gallery: {
       exterior: [
         '/images/cars/toyota-lc-3-ext-1.jpg',
@@ -365,7 +365,7 @@ export const cars: Car[] = [
     transmission: '10-speed automatic',
     drivetrain: 'permanent 4WD',
     harajUrl: 'https://haraj.com.sa/11185123598?src=android',
-    heroImage: '/images/cars/lexus-lx600-hero.jpg',
+    heroImage: '/lexus.jpg',
     gallery: {
       exterior: ['/images/cars/lexus-lx600-ext-1.jpg'],
       interior: ['/images/cars/lexus-lx600-int-1.jpg'],
@@ -424,7 +424,7 @@ export const cars: Car[] = [
     transmission: '10-speed automatic',
     drivetrain: '4WD',
     harajUrl: 'https://haraj.com.sa/11187663468?src=android',
-    heroImage: '/images/cars/cadillac-escalade-hero.jpg',
+    heroImage: '/cadillac.jpg',
     gallery: {
       exterior: ['/images/cars/cadillac-escalade-ext-1.jpg'],
       interior: ['/images/cars/cadillac-escalade-int-1.jpg'],
