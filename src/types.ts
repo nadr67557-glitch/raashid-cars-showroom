@@ -32,7 +32,7 @@ export interface Car {
   specs: CarSpec[];
   financing?: FinancingInfo;
   harajUrl: string;
-  status: 'available' | 'sold' | 'reserved' | 'جديدة' | 'بطاقة جمركية';
+  status: 'available' | 'sold' | 'reserved' | 'متاحة' | 'جديدة' | 'بطاقة جمركية';
   color?: string;
   interiorColor?: string;
   fuelType?: string;
