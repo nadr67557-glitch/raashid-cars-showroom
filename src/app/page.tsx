@@ -110,18 +110,20 @@ export default function Home() {
 
           <div className="border-t border-[#8B5CF6]/15"></div>
 
-          {/* الفوتر: حقوق + كبسولة المصمم */}
+          {/* الفوتر: حقوق + كبسولة المصمم (سطر واحد منتظم) */}
           <div className="space-y-5 text-center">
             <p className="text-xs text-[#B8B0A6]">
               جميع الحقوق محفوظة © 2026 معرض راشد للسيارات — RAASHID CARS
             </p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-3 rounded-full border border-[#8B5CF6]/25 bg-[#1B1E20]/60">
-              <span className="w-8 h-8 bg-[#8B5CF6]/15 border border-[#8B5CF6]/40 rounded-full flex items-center justify-center">
+            <div className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full border border-[#8B5CF6]/25 bg-[#1B1E20]/60">
+              <span className="w-8 h-8 bg-[#8B5CF6]/15 border border-[#8B5CF6]/40 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-[10px] font-bold text-[#8B5CF6]">KJ</span>
               </span>
-              <span className="text-sm font-semibold text-[#F3F0EA]">خالد الجراش</span>
-              <span className="text-xs text-[#B8B0A6]">تصميم وتنفيذ الحلول الرقمية</span>
-              <a href="tel:779184839" dir="ltr" className="text-xs font-medium text-[#8B5CF6] hover:text-[#A78BFA] transition-colors">
+              <span className="flex flex-col items-center leading-tight text-center">
+                <span className="text-sm font-semibold text-[#F3F0EA]">خالد الجراش</span>
+                <span className="text-[10px] text-[#B8B0A6]">تصميم وتنفيذ الحلول الرقمية</span>
+              </span>
+              <a href="tel:779184839" dir="ltr" className="text-xs font-medium text-[#8B5CF6] hover:text-[#A78BFA] transition-colors flex-shrink-0">
                 779184839
               </a>
             </div>
