@@ -10,29 +10,43 @@ interface ShowroomHeroProps {
   onInventoryOpen: () => void;
 }
 
+// ✅ سيارات الـ Hero فقط (الترتيب والعدد ثابتان)
+const HERO_CAR_IDS: string[] = [
+  'lexus-lx600-fsport-2026',
+  'nissan-patrol-platinum-tt-2026',
+  'cadillac-escalade-sport-2025',
+  'toyota-land-cruiser-l5-al-sayer-2026'
+];
+
 export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomHeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
+  // ✅ تُستخدم فقط لعدد المخزون السريع (13) — بدون تغيير
   const availableCars = cars.filter(car => 
     car.status === 'available' || 
     car.status === 'جديدة' || 
     car.status === 'بطاقة جمركية'
   );
+
+  // ✅ قائمة الـ Hero: 4 سيارات بالترتيب المحدد
+  const heroCars: Car[] = HERO_CAR_IDS
+    .map(id => cars.find(car => car.id === id))
+    .filter((car): car is Car => car !== undefined);
   
-  const currentCar = availableCars[currentIndex];
+  const currentCar = heroCars[currentIndex];
 
   useEffect(() => {
     const preloadImage = (index: number) => {
-      if (index >= 0 && index < availableCars.length) {
+      if (index >= 0 && index < heroCars.length) {
         const img = new Image();
-        img.src = availableCars[index].heroImage;
+        img.src = heroCars[index].heroImage;
       }
     };
     preloadImage(currentIndex - 1);
     preloadImage(currentIndex + 1);
-  }, [currentIndex, availableCars]);
+  }, [currentIndex, heroCars]);
 
   const navigateToCar = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -45,14 +59,14 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
   }, [currentIndex, isTransitioning]);
 
   const goToNext = useCallback(() => {
-    const nextIndex = (currentIndex + 1) % availableCars.length;
+    const nextIndex = (currentIndex + 1) % heroCars.length;
     navigateToCar(nextIndex);
-  }, [currentIndex, availableCars.length, navigateToCar]);
+  }, [currentIndex, heroCars.length, navigateToCar]);
 
   const goToPrev = useCallback(() => {
-    const prevIndex = (currentIndex - 1 + availableCars.length) % availableCars.length;
+    const prevIndex = (currentIndex - 1 + heroCars.length) % heroCars.length;
     navigateToCar(prevIndex);
-  }, [currentIndex, availableCars.length, navigateToCar]);
+  }, [currentIndex, heroCars.length, navigateToCar]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -239,12 +253,12 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         </span>
         <span className="text-sm text-[#B8B0A6]">/</span>
         <span className="text-sm text-[#B8B0A6]">
-          {String(availableCars.length).padStart(2, '0')}
+          {String(heroCars.length).padStart(2, '0')}
         </span>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {availableCars.map((_, index) => (
+        {heroCars.map((_, index) => (
           <button
             key={index}
             onClick={() => navigateToCar(index)}
