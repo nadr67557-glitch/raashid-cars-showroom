@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Car } from '../types';
 import { cars } from '../data/cars';
-import Link from 'next/link';
 
 interface QuickInventoryProps {
   isOpen: boolean;
@@ -190,13 +189,9 @@ export default function QuickInventory({ isOpen, onClose, onSelectCar }: QuickIn
           ) : (
             <div className="space-y-4">
               {filteredCars.map((car) => (
-                <Link
+                <button
                   key={car.id}
-                  href={`/cars/${car.id}`}
-                  onClick={() => {
-                    onSelectCar(car);
-                    onClose();
-                  }}
+                  onClick={() => onSelectCar(car)}
                   className="w-full flex items-center gap-4 p-3 bg-[#8B5CF6]/10 border border-[#8B5CF6]/25 rounded-2xl hover:border-[#8B5CF6]/60 hover:bg-[#8B5CF6]/15 transition-all text-right group"
                 >
                   <div className="w-24 h-24 bg-[#111315] rounded-xl overflow-hidden flex-shrink-0 border border-[#8B5CF6]/20">
@@ -223,7 +218,7 @@ export default function QuickInventory({ isOpen, onClose, onSelectCar }: QuickIn
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
                     </svg>
                   </div>
-                </Link>
+                </button>
               ))}
             </div>
           )}
