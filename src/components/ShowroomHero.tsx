@@ -118,8 +118,8 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
   return (
     <div
       id="hero-showroom"
-      className="relative w-full h-screen overflow-y-auto md:overflow-hidden bg-[#111315]"
-      style={{ height: '100dvh' }}
+      className="relative w-full min-h-screen md:h-screen md:overflow-hidden bg-[#111315]"
+      style={{ minHeight: '100dvh' }}
     >
       {/* الخلفية الفحمية مع لمسة بنفسجية سينمائية */}
       <div className="absolute inset-0 z-0">
@@ -145,13 +145,13 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         }}
       />
 
-      {/* الجوال: تدفق طبيعي / الكمبيوتر: كما هو */}
+      {/* الجوال: تدفق طبيعي قابل للتمرير / الكمبيوتر: كما هو */}
       <div className="relative z-10 flex flex-col md:block md:h-full">
 
         {/* بطاقة الصورة + الأسهم على حوافها */}
         <div className="relative z-10 mt-32 md:mt-0 md:absolute md:inset-0 md:flex md:items-center md:justify-center px-6 md:px-4">
           <div 
-            className={`relative h-[32vh] md:h-[70vh] w-full max-w-[1200px] transition-all duration-300 ease-out ${
+            className={`relative h-[30vh] md:h-[70vh] w-full max-w-[1200px] transition-all duration-300 ease-out ${
               isTransitioning 
                 ? direction === 'next' 
                   ? 'opacity-0 translate-x-8' 
@@ -191,48 +191,48 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         </div>
 
         {/* المعلومات: تحت الصورة في الجوال / مثبّتة أسفل في الكمبيوتر */}
-        <div className="relative z-20 px-6 pt-8 pb-4 text-center md:text-right md:pt-0 md:pb-32 md:absolute md:bottom-0 md:left-0 md:right-0 md:px-12">
+        <div className="relative z-20 px-6 pt-5 pb-2 text-center md:text-right md:pt-0 md:pb-32 md:absolute md:bottom-0 md:left-0 md:right-0 md:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-sm font-medium text-[#F3F0EA]">
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4 md:mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-xs md:text-sm font-medium text-[#F3F0EA]">
                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
                 {currentCar.status === 'available' ? 'متاحة' : currentCar.status}
               </span>
-              <span className="inline-flex items-center px-4 py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-sm font-medium text-[#F3F0EA]">
+              <span className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-xs md:text-sm font-medium text-[#F3F0EA]">
                 موديل {currentCar.year}
               </span>
               {currentCar.drivetrain && (
-                <span className="inline-flex items-center px-4 py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-sm font-medium text-[#F3F0EA]">
+                <span className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 bg-[#8B5CF6]/15 backdrop-blur-md border border-[#8B5CF6]/30 rounded-full text-xs md:text-sm font-medium text-[#F3F0EA]">
                   {currentCar.drivetrain}
                 </span>
               )}
             </div>
 
-            <div className="mb-3">
-              <p className="text-sm font-medium tracking-[0.2em] text-[#B8B0A6] uppercase mb-2">
+            <div className="mb-2 md:mb-3">
+              <p className="text-xs md:text-sm font-medium tracking-[0.2em] text-[#B8B0A6] uppercase mb-2">
                 {currentCar.brand} • موديل {currentCar.year}
               </p>
-              <h1 className="text-3xl md:text-5xl font-bold text-[#F3F0EA] leading-tight mb-2">
+              <h1 className="text-2xl md:text-5xl font-bold text-[#F3F0EA] leading-tight mb-2">
                 {currentCar.nameAr}
               </h1>
-              <p className="text-sm md:text-base font-semibold tracking-[0.15em] text-[#8B5CF6] uppercase">
+              <p className="text-xs md:text-base font-semibold tracking-[0.15em] text-[#8B5CF6] uppercase">
                 {currentCar.name}
               </p>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-5 md:mb-8">
               <p className="text-sm text-[#B8B0A6] mb-1">السعر النقدي</p>
               <div className="flex items-baseline justify-center md:justify-start gap-2">
-                <span className="text-4xl md:text-5xl font-bold text-[#F3F0EA]">
+                <span className="text-3xl md:text-5xl font-bold text-[#F3F0EA]">
                   {formatPrice(currentCar.price)}
                 </span>
-                <span className="text-xl md:text-2xl text-[#B8B0A6]">ريال</span>
+                <span className="text-lg md:text-2xl text-[#B8B0A6]">ريال</span>
               </div>
             </div>
 
             <button
               onClick={() => onCarSelect(currentCar)}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#8B5CF6] text-[#F3F0EA] font-semibold rounded-xl hover:bg-[#7C3AED] transition-all duration-200 hover:-translate-y-1 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_28px_rgba(139,92,246,0.5)]"
+              className="inline-flex items-center gap-3 px-8 py-3.5 md:py-4 bg-[#8B5CF6] text-[#F3F0EA] font-semibold rounded-xl hover:bg-[#7C3AED] transition-all duration-200 hover:-translate-y-1 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_28px_rgba(139,92,246,0.5)]"
             >
               <span>استعراض السيارة كاملة</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default function ShowroomHero({ onCarSelect, onInventoryOpen }: ShowroomH
         </div>
 
         {/* الصف السفلي: كبسولة النقاط + كبسولة العداد */}
-        <div className="relative z-20 mt-2 pb-8 flex items-center justify-center gap-4 md:contents">
+        <div className="relative z-20 mt-3 pb-6 flex items-center justify-center gap-4 md:contents">
           <div className="z-30 flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#8B5CF6]/30 bg-[#111315]/80 backdrop-blur-md md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2">
             {heroCars.map((_, index) => (
               <button
