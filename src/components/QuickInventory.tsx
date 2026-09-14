@@ -30,7 +30,7 @@ function CarThumb({ src, alt }: { src: string; alt: string }) {
       src={src}
       alt={alt}
       onError={() => setFailed(true)}
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
       loading="lazy"
     />
   );
@@ -194,7 +194,7 @@ export default function QuickInventory({ isOpen, onClose, onSelectCar }: QuickIn
                   onClick={() => onSelectCar(car)}
                   className="w-full flex items-center gap-4 p-3 bg-[#8B5CF6]/10 border border-[#8B5CF6]/25 rounded-2xl hover:border-[#8B5CF6]/60 hover:bg-[#8B5CF6]/15 transition-all text-right group"
                 >
-                  <div className="w-24 h-24 bg-[#111315] rounded-xl overflow-hidden flex-shrink-0 border border-[#8B5CF6]/20">
+                  <div className="w-28 h-28 md:w-32 md:h-32 bg-[#111315] rounded-xl overflow-hidden flex-shrink-0 border border-[#8B5CF6]/20">
                     <CarThumb src={car.heroImage} alt={car.nameAr} />
                   </div>
                   
